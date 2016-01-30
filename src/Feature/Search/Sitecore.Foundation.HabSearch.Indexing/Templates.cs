@@ -26,5 +26,16 @@ namespace Sitecore.Foundation.HabSearch.Indexing
                 public const string SiteSectionFacet_FieldName = "SiteSectionFacet";
             }
         }
+
+        internal struct Facet
+        {
+            public static ID ID = new ID("{799C6BF2-A816-4899-AE00-34CE4E8AC6FA}");
+
+            public struct Fields
+            {
+                public static readonly ID Title = new ID("{78AB750B-B634-4D68-8919-5451C7BAAB4C}");
+                public const string Title_FieldName = "Title";
+            }
+        }
     }
 }

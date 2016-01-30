@@ -27,8 +27,8 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
                     Sitecore.Data.Fields.ReferenceField referenceField = item.Item.Fields[Templates.FacetType.Fields.SiteSectionFacet];
                     if (referenceField != null && referenceField.TargetItem != null)
                     {
-                        if (!string.IsNullOrWhiteSpace(referenceField.TargetItem["Title"]))
-                            return referenceField.TargetItem["Title"];
+                        if (!string.IsNullOrWhiteSpace(referenceField.TargetItem[Templates.Facet.Fields.Title]))
+                            return referenceField.TargetItem[Templates.Facet.Fields.Title];
                     }
                 }
             }

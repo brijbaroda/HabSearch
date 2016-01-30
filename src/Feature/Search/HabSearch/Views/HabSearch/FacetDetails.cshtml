@@ -2,7 +2,8 @@
 
 <br/>
 <div id="facets">
-    @foreach (var facet in @Model.Facets)
+  <h3>Facets</h3>
+      @foreach (var facet in @Model.Facets)
     {
         var facetTitle = facet.Value.Split('|')[0];
         var facetCount = facet.Value.Split('|')[1].Replace(")", "").Replace("(", "");
@@ -33,3 +34,5 @@
         }
     }
 </div>
+<br />
+<br />

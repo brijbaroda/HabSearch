@@ -41,6 +41,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Sitecore.Kernel">
+      <HintPath>bin\Debug\Sitecore.Kernel.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -86,9 +89,13 @@
   <ItemGroup>
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HabSearchController.cs" />
-    <Compile Include="Models\Class1.cs" />
+    <Compile Include="Models\SearchQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Class1.cs" />
+    <Compile Include="Repositories\ISearchServiceRepository.cs" />
+    <Compile Include="Repositories\ISearchSettingsRepository.cs" />
+    <Compile Include="Repositories\QueryRepository.cs" />
+    <Compile Include="Repositories\SearchServiceRepository.cs" />
+    <Compile Include="Repositories\SearchSettingsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -96,7 +103,12 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Sitecore.Foundation.HabSearch.Indexing\Sitecore.Foundation.HabSearch.Indexing.csproj">
+      <Project>{d3a57791-494c-4e11-a6e6-aaae049f2e92}</Project>
+      <Name>Sitecore.Foundation.HabSearch.Indexing</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>

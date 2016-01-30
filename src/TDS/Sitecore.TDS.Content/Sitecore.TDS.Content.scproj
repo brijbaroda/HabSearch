@@ -37,7 +37,7 @@
     <SitecoreDeployFolder>C:\inetpub\wwwroot\Habitat\Website</SitecoreDeployFolder>
     <SitecoreAccessGuid>2d96753f-2525-42f0-8b08-f5f827e74582</SitecoreAccessGuid>
     <PackageName>Sitecore.TDS.Content</PackageName>
-    <GeneratePackage>True</GeneratePackage>
+    <GeneratePackage>False</GeneratePackage>
     <SeperateFilesAndItems>False</SeperateFilesAndItems>
     <PackageExcludeCode>True</PackageExcludeCode>
     <AddDateTimeToPackageName>True</AddDateTimeToPackageName>

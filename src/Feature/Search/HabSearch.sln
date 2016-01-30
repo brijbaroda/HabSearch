@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Feature.HabSearch"
 EndProject
 Project("{CAA73BB0-EF22-4D79-A57E-DF67B3BA9C80}") = "Sitecore.TDS.Master", "..\..\TDS\Sitecore.TDS.Master\Sitecore.TDS.Master.scproj", "{764460EF-882E-4326-B051-77CF5319B4BA}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", "{8FAC6F4A-E1E3-4467-B807-E9ACF0DC29FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Foundation.HabSearch.Indexing", "Sitecore.Foundation.HabSearch.Indexing\Sitecore.Foundation.HabSearch.Indexing.csproj", "{D3A57791-494C-4E11-A6E6-AAAE049F2E92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,8 +27,15 @@ Global
 		{764460EF-882E-4326-B051-77CF5319B4BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{764460EF-882E-4326-B051-77CF5319B4BA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{764460EF-882E-4326-B051-77CF5319B4BA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D3A57791-494C-4E11-A6E6-AAAE049F2E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A57791-494C-4E11-A6E6-AAAE049F2E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A57791-494C-4E11-A6E6-AAAE049F2E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A57791-494C-4E11-A6E6-AAAE049F2E92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D3A57791-494C-4E11-A6E6-AAAE049F2E92} = {8FAC6F4A-E1E3-4467-B807-E9ACF0DC29FD}
 	EndGlobalSection
 EndGlobal

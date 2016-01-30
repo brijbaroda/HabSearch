@@ -26,6 +26,17 @@ namespace Sitecore.Feature.HabSearch
             }
         }
 
-        
+        public struct HabSearchAnalyticSettings
+        {
+            public static readonly ID ID = new ID("{40D19A90-F220-48FC-BC41-EFB06DB8B90B}");
+
+            public struct Fields
+            {
+                public static readonly ID EnableHabSeachAnalytics = new ID("{F4469CFF-91FF-4A55-8D9C-9DEAFC3CF2E6}");
+                public static readonly ID SearchTermsRootFolder = new ID("{B8E7F74D-8957-4C10-898E-A160BBF11966}");
+            }
+        }
+
+
     }
 }

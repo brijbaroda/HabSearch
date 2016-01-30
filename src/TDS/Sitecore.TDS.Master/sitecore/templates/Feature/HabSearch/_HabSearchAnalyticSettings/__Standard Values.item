@@ -1,0 +1,65 @@
+----item----
+version: 1
+id: {E37B8445-2A27-4A6E-9409-DA1ED4F3EA72}
+database: master
+path: /sitecore/templates/Feature/HabSearch/_HabSearchAnalyticSettings/__Standard Values
+parent: {40D19A90-F220-48FC-BC41-EFB06DB8B90B}
+name: __Standard Values
+master: {00000000-0000-0000-0000-000000000000}
+template: {40D19A90-F220-48FC-BC41-EFB06DB8B90B}
+templatekey: _HabSearchAnalyticSettings
+
+----version----
+language: en
+version: 1
+revision: e608e475-05ad-43b2-9135-8f53e1c61a68
+
+----field----
+field: {F4469CFF-91FF-4A55-8D9C-9DEAFC3CF2E6}
+name: Enable HabSeach Analytics
+key: enable habseach analytics
+content-length: 1
+
+1
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 14
+
+sitecore\admin
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20160130T125258Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 14
+
+sitecore\admin
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+e608e475-05ad-43b2-9135-8f53e1c61a68
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160130T125304Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

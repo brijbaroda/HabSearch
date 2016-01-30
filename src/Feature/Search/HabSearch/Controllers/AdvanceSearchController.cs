@@ -54,7 +54,19 @@
 
         public ActionResult AdvanceSearchResults(int? page)
         {
+           
             var searchTerm = Request.QueryString[QueryStringKey];
+
+            if (Tracker.Current != null && Tracker.Enabled)
+            {
+                //Check HabSearch Analytics Settings
+                var habSearchAnalytics = HabSearchAnalyticsRepository.GetHabSearchAnalyticsSettings();
+                if (habSearchAnalytics != null
+                    && (habSearchAnalytics.IsAnalyticsEnabled && !string.IsNullOrWhiteSpace(habSearchAnalytics.SearchTermsRootFolderPath)))
+                {
+                    SetPatternCard(searchTerm, habSearchAnalytics.SearchTermsRootFolderPath);
+                }
+            }
             var model = new SearchResultsModel
             {
 
@@ -167,6 +179,65 @@
             {
                 Log.Error("Something went wrong in FacetDetails", ex, this);
                 return new EmptyResult();
+            }
+        }
+
+        public void SetPatternCard(string searchedTerm, string searchTermsRoot)
+        {
+            try
+            {
+                Sitecore.Data.Database db = Sitecore.Context.Database;
+
+                var searchTermsRootItem = db.GetItem(searchTermsRoot);
+                if (searchTermsRootItem != null)
+                {
+                    //Get persona tag from Data folder matching the searched keyword
+                    var peronaDataTagsQuery = string.Format(searchTermsRootItem.Paths.FullPath + "//*[CompareCaseInsensitive(@Text,'{0}')]", searchedTerm);
+                    // TODO: Use search indexes if more search items .
+                    Item matchedPeronaTag = db.SelectSingleItem(peronaDataTagsQuery);
+
+                    if (matchedPeronaTag != null)
+                    {
+                        //Get all pattern cards which has matching persona tag as per searched keyword                
+                        var query = string.Format("/sitecore/system/Marketing Control Panel/Profiles//*[@@templateid='{0}' and contains(@Related Search Terms,'{1}')]", "{4A6A7E36-2481-438F-A9BA-0453ECC638FA}", matchedPeronaTag.ID);
+                        Item[] allPatternCards = db.SelectItems(query);
+
+                        foreach (Item patternCard in allPatternCards)
+                        {
+                            TrackingField tField = new TrackingField(patternCard.Fields["Pattern"]);
+                            var listProfiles = tField.Profiles.Where(profile1 => profile1.IsSavedInField);
+
+                            if (listProfiles.Any())
+                            {
+                                var scores = new Dictionary<string, float>();
+
+                                foreach (ContentProfile profile in listProfiles)
+                                {
+                                    if (Tracker.Current.Interaction != null)
+                                    {
+                                        //Set current profile with respective pattern
+                                        var pageProfile = Tracker.Current.Interaction.Profiles[patternCard.Parent.Parent.Name];
+
+                                        foreach (var key in profile.Keys)
+                                        {
+                                            if (key.Value != 0)
+                                            {
+                                                // Value is increased by 3 times to add the profile to current Interaction  ASAP.
+                                                scores.Add(key.Name, key.Value * 3);
+                                            }
+                                        }
+                                        pageProfile.Score(scores);
+                                        pageProfile.UpdatePattern();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Sitecore.Diagnostics.Log.Error("Error occured in SetPatternCard " + ex.ToString(), new Exception());
             }
         }
     }

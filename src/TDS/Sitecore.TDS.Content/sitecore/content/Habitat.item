@@ -122,7 +122,7 @@ sitecore\unicorn
 ----version----
 language: en
 version: 1
-revision: 684bcc0a-490f-436d-922e-3df74f1ddb9f
+revision: 4545bf17-1268-4954-8b77-89bbaf5159bd
 
 ----field----
 field: {2A84ECA4-68BB-4451-B4AC-98EA71A5A3DC}
@@ -131,6 +131,13 @@ key: siteprofiles
 content-length: 38
 
 {24DFF2CF-B30A-4B75-8967-2FE3DED82271}
+----field----
+field: {B8E7F74D-8957-4C10-898E-A160BBF11966}
+name: Search Terms Root Folder
+key: search terms root folder
+content-length: 38
+
+{28ED29B3-3571-459E-8EF6-46C52CEBFD79}
 ----field----
 field: {E748D808-64C1-4DEC-9718-F35CF9689E4B}
 name: Logo
@@ -200,18 +207,18 @@ name: __Revision
 key: __revision
 content-length: 36
 
-684bcc0a-490f-436d-922e-3df74f1ddb9f
+4545bf17-1268-4954-8b77-89bbaf5159bd
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20160119T132018Z
+20160130T182313Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by
 key: __updated by
-content-length: 16
+content-length: 14
 
-sitecore\unicorn
+sitecore\admin

@@ -8,5 +8,6 @@
         public int Page { get; set; }
 
         public int ResultsOnPage { get; set; }
+
     }
 }

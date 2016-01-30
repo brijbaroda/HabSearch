@@ -23,10 +23,17 @@ key: __standard values
 content-length: 38
 
 {CD1C06A5-9695-4AA0-9D3A-FDCF5738CE39}
+----field----
+field: {06D5295C-ED2F-4A54-9BF2-26228D113318}
+name: __Icon
+key: __icon
+content-length: 45
+
+Applications/32x32/bullet_ball_glass_grey.png
 ----version----
 language: en
 version: 1
-revision: adc82bf0-1179-4914-90b9-1db2f54ee528
+revision: 93bc5e5d-71e3-43bb-8f62-95ff13ac3b54
 
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
@@ -48,14 +55,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-adc82bf0-1179-4914-90b9-1db2f54ee528
+93bc5e5d-71e3-43bb-8f62-95ff13ac3b54
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20160130T102011Z
+20160130T164828Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

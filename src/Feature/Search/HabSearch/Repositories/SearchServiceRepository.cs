@@ -1,7 +1,4 @@
-﻿
-using Sitecore.Foundation.HabSearch.Indexing.Models;
-
-namespace Sitecore.Feature.HabSearch.Repositories
+﻿namespace Sitecore.Feature.HabSearch.Repositories
 {
     public class SearchServiceRepository : ISearchServiceRepository
     {

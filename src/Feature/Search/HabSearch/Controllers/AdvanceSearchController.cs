@@ -11,7 +11,6 @@
     using Links;
     using Models;
     using Repositories;
-    using Sitecore.Foundation.HabSearch.Indexing.Models;
     using System;
     using System.Collections.Generic;
     using System.Linq;

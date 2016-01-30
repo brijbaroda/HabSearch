@@ -1,5 +1,4 @@
 ﻿using Sitecore.Foundation.HabSearch.Indexing.Infrastructure;
-using Sitecore.Foundation.HabSearch.Indexing.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

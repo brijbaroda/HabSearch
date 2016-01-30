@@ -4,7 +4,6 @@ using Sitecore.Data.Items;
 using Sitecore.Data.Fields;
 using Sitecore.Sites;
 using Sitecore.Mvc.Presentation;
-using Sitecore.Foundation.HabSearch.Indexing.Models;
 using Sitecore.Links;
 
 

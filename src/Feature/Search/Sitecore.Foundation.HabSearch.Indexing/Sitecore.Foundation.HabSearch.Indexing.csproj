@@ -51,27 +51,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
-    <Compile Include="Infrastructure\IndexContentProviderBase.cs" />
-    <Compile Include="Infrastructure\IndexContentProviderRepository.cs" />
     <Compile Include="Infrastructure\IndexSearchBase.cs" />
     <Compile Include="Infrastructure\SiteSearchProvider.cs" />
     <Compile Include="Infrastructure\SiteSectionFacetComputedField.cs" />
-    <Compile Include="Models\IndexedItem.cs" />
-    <Compile Include="Models\IQuery.cs" />
-    <Compile Include="Models\ISearchResult.cs" />
-    <Compile Include="Models\ISearchResults.cs" />
-    <Compile Include="Models\ISearchSettings.cs" />
-    <Compile Include="Models\SearchResult.cs" />
     <Compile Include="Models\SearchResultRepository.cs" />
-    <Compile Include="Models\SearchResults.cs" />
-    <Compile Include="Models\SearchResultsRepository.cs" />
-    <Compile Include="Models\SearchService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Config\Include\Foundation\Foundation.HabSearch.Indexing.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

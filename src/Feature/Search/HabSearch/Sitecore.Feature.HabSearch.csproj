@@ -105,14 +105,8 @@
     <Compile Include="Models\ISearchableItem.cs" />
     <Compile Include="Models\SearchQuery.cs" />
     <Compile Include="Models\SearchResultsModel.cs" />
-    <Compile Include="Models\SearchSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\HabSearchAnalyticsRepository.cs" />
-    <Compile Include="Repositories\ISearchServiceRepository.cs" />
-    <Compile Include="Repositories\ISearchSettingsRepository.cs" />
-    <Compile Include="Repositories\QueryRepository.cs" />
-    <Compile Include="Repositories\SearchServiceRepository.cs" />
-    <Compile Include="Repositories\SearchSettingsRepository.cs" />
     <Compile Include="Templates.cs" />
   </ItemGroup>
   <ItemGroup>

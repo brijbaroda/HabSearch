@@ -1,7 +1,6 @@
 ﻿namespace Sitecore.Feature.HabSearch.Repositories
 {
     using Sitecore.Feature.HabSearch.Models;
-    using Sitecore.Foundation.HabSearch.Indexing.Models;
 
     public class QueryRepository
     {

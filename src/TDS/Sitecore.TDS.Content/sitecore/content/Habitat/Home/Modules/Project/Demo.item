@@ -1,0 +1,102 @@
+----item----
+version: 1
+id: {531DF3B4-EDB1-43FA-9AB3-9B5AC1ED3B81}
+database: master
+path: /sitecore/content/Habitat/Home/Modules/Project/Demo
+parent: {8D8EDB18-B641-4277-BAD3-9C6CF89F9FE3}
+name: Demo
+master: {00000000-0000-0000-0000-000000000000}
+template: {94A8C8E9-690B-4E65-98E7-F95800222767}
+templatekey: Article
+
+----field----
+field: {BA3F86A2-4A1C-4D78-B63D-91C2779C1B5E}
+name: __Sortorder
+key: __sortorder
+content-length: 3
+
+300
+----version----
+language: en
+version: 1
+revision: 85313a8a-67ce-4036-9a1a-5a6d9e2a9b8e
+
+----field----
+field: {C30A013F-3CC8-4961-9837-1C483277084A}
+name: Title
+key: title
+content-length: 4
+
+Demo
+----field----
+field: {AC3FD4DB-8266-476D-9635-67814D91E901}
+name: Summary
+key: summary
+content-length: 167
+
+<p>The Demo website can be used to start demonstrations of the Sitecore platform, e.g. by creating mockups of external sites triggering campaigns or landing pages.</p>
+----field----
+field: {D74F396D-5C5E-4916-BD0A-BFD58B6B1967}
+name: Body
+key: body
+content-length: 463
+
+<p>The Demo website can be used to start demonstrations of the Sitecore platform, e.g. by creating mockups of external sites triggering campaigns or landing pages.</p>
+<p>To set up the demo website on your local installation, please add a secondary IIS binding and hosts file domain for the demo &lt;site&gt; defined in web.config.</p>
+<p><a href="https://github.com/Sitecore/Habitat/wiki/02.01.02-Project.Demo" target="_blank">See also the Habitat Wiki</a></p>
+----field----
+field: {9492E0BB-9DF9-46E7-8188-EC795C4ADE44}
+name: Image
+key: image
+content-length: 58
+
+<image mediaid="{661F563E-D23F-4C91-8BFA-1A5BD3547A50}" />
+----field----
+field: {F77A9410-3E65-4E9B-9CD9-7A9CBC4FA81D}
+name: SiteSectionFacet
+key: sitesectionfacet
+content-length: 38
+
+{75BE9007-8262-4302-995C-7DB20E0B747A}
+----field----
+field: {1B483E91-D8C4-4D19-BA03-462074B55936}
+name: NavigationTitle
+key: navigationtitle
+content-length: 4
+
+Demo
+----field----
+field: {CA0479CE-0BFE-4522-83DE-BA688B380A78}
+name: BrowserTitle
+key: browsertitle
+content-length: 4
+
+Demo
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20160111T221316Z
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+85313a8a-67ce-4036-9a1a-5a6d9e2a9b8e
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20160130T213959Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

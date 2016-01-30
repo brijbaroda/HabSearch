@@ -32,6 +32,16 @@
     <DisableFileDeployment>False</DisableFileDeployment>
     <SitecoreDeployFolder>C:\inetpub\wwwroot\Habitat\Website</SitecoreDeployFolder>
     <SitecoreAccessGuid>2d96753f-2525-42f0-8b08-f5f827e74582</SitecoreAccessGuid>
+    <PackageName>Sitecore.TDS.Master</PackageName>
+    <GeneratePackage>True</GeneratePackage>
+    <SeperateFilesAndItems>False</SeperateFilesAndItems>
+    <PackageExcludeCode>True</PackageExcludeCode>
+    <AddDateTimeToPackageName>False</AddDateTimeToPackageName>
+    <PackageAuthor>Horizontal Indians</PackageAuthor>
+    <PackagePublisher>Horizontal Indians</PackagePublisher>
+    <PackageReadme>Sitecore Hackathon - Advance Search Implementation Templates </PackageReadme>
+    <PackageVersion>1.0.0.0</PackageVersion>
+    <SitecoreAssemblyPath>C:\inetpub\wwwroot\Habitat\Website\bin</SitecoreAssemblyPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugSymbols>false</DebugSymbols>

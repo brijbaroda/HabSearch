@@ -33,7 +33,7 @@
     <SitecoreWebUrl>http://habitat.local</SitecoreWebUrl>
     <InstallSitecoreConnector>True</InstallSitecoreConnector>
     <DisableFileDeployment>False</DisableFileDeployment>
-    <SitecoreDeployFolder>C:\inetpub\wwwroot\Habitat.local\Website</SitecoreDeployFolder>
+    <SitecoreDeployFolder>C:\inetpub\wwwroot\Habitat\Website</SitecoreDeployFolder>
     <SitecoreAccessGuid>2d96753f-2525-42f0-8b08-f5f827e74582</SitecoreAccessGuid>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Sitecore.ContentSearch;
 using Sitecore.ContentSearch.ComputedFields;
 using Sitecore.Data.Items;
+using Sitecore.Foundation.HabSearch.Indexing.Models;
 
 namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
 {
@@ -19,9 +20,17 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
         {
             var item = (SitecoreIndexableItem)indexable;
 
-            if (item != null && item.Item != null && item.Item.Fields[Templates.FacetType.Fields.SiteSectionFacet] != null)
+            if (item != null && item.Item != null && item.Item.IsDerived(Templates.FacetType.ID))
             {
-                return item.Item.Fields[Templates.FacetType.Fields.SiteSectionFacet];
+                if (item.Item.Fields[Templates.FacetType.Fields.SiteSectionFacet] != null)
+                {
+                    Sitecore.Data.Fields.ReferenceField referenceField = item.Item.Fields[Templates.FacetType.Fields.SiteSectionFacet];
+                    if (referenceField != null && referenceField.TargetItem != null)
+                    {
+                        if (!string.IsNullOrWhiteSpace(referenceField.TargetItem["Title"]))
+                            return referenceField.TargetItem["Title"];
+                    }
+                }
             }
 
             return string.Empty;

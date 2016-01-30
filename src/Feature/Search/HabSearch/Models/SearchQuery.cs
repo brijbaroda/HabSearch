@@ -1,4 +1,4 @@
-﻿namespace HabSearch.Models
+﻿namespace Sitecore.Feature.HabSearch.Models
 {
     public class SearchQuery
     {

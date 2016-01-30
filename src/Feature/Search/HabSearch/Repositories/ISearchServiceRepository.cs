@@ -1,5 +1,5 @@
 ﻿
-namespace HabSearch.Repositories
+namespace Sitecore.Feature.HabSearch.Repositories
 {
     public interface ISearchServiceRepository
     {

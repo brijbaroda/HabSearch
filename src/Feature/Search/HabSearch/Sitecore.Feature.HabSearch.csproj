@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HabSearch</RootNamespace>
-    <AssemblyName>HabSearch</AssemblyName>
+    <RootNamespace>Sitecore.Feature.HabSearch</RootNamespace>
+    <AssemblyName>Sitecore.Feature.HabSearch</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -84,11 +84,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Controllers\DefaultController.cs" />
-    <Compile Include="Controllers\HabSearchController.cs" />
+    <Compile Include="Controllers\AdvanceSearchController.cs" />
     <Compile Include="Models\SearchQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ISearchServiceRepository.cs" />
@@ -110,13 +106,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_ViewStart.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_Layout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\HabSearch\AdvanceSearch.cshtml" />
+    <Content Include="Views\HabSearch\AdvanceSearchResults.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

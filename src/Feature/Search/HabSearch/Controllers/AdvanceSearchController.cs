@@ -1,14 +1,14 @@
-﻿namespace HabSearch.Controllers
+﻿namespace Sitecore.Feature.HabSearch.Controllers
 {
     using Models;
     using Sitecore.Foundation.HabSearch.Indexing.Models;
     using System.Web.Mvc;
 
-    public class HabSearchController : Controller
+    public class AdvanceSearchController : Controller
     {
-        public ActionResult FacetedSearchResults(string query)
+        public ActionResult AdvanceSearchResults(string query)
         {
-            return this.View("HabSearchResults", this.GetFacetedSearchResults(new SearchQuery { Query = query }));
+            return this.View("~/Views/HabSearch/AdvanceSearchResults.cshtml", this.GetFacetedSearchResults(new SearchQuery { Query = query }));
         }
 
         private ISearchResults GetFacetedSearchResults(SearchQuery searchQuery)

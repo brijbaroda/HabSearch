@@ -1,1 +1,58 @@
-﻿
+﻿@model Sitecore.Feature.HabSearch.Models.SearchResultsModel
+<div class="content-list search-results">
+    @if (Model.AllResultsCount == "0")
+    {
+        <span>No results found</span>
+    }
+    @foreach (var result in Model.SearchResults)
+    {
+        var item = result.Item;
+        <div class="result">
+            <h3>
+                <a href="@result.Url">@Html.Raw(result.Title)</a>
+            </h3>
+            <div class="tags">
+                <span class="label label-default">@result.ContentType</span>
+            </div>
+            @if (!string.IsNullOrWhiteSpace(result.Description))
+            {
+                <div class="description">
+                    @Html.Raw(result.Description)
+                </div>
+            }
+            <a class="btn btn-default" href="@result.Url">Read more</a>
+        </div>
+    }
+</div>
+<div id="facets">
+    @foreach (var facet in @Model.AudienceFacets)
+            {
+                var facetTitle = facet.Value.Split('|')[0];
+                var facetCount = facet.Value.Split('|')[1].Replace(")", "").Replace("(", "");
+                var facetTitleWithCount = facet.Value.Replace("|", " ");
+
+
+                string activeClass = string.Empty;
+                if (Model.AudienceFacet != null && Model.AudienceFacet.ToLower() == facetTitle.ToLower())
+                {
+                    activeClass = "active";
+                }
+
+                if (facetCount == "0")
+                {
+                    activeClass = "disabled";
+            <li class="@activeClass">
+                <a href="#">@facetTitleWithCount</a>
+            </li>
+        }
+        else
+        {
+            <li class="@activeClass">
+                <a href='@string.Format("{0}?{1}={2}&{3}={4}",
+                Model.PageUrl, Model.QueryStringKey, Model.Keyword, Model.AudienceFacetQueryStringKey,
+                facetTitle)'>>@facetTitleWithCount</a>
+            </li>
+
+        }
+    }
+</div>

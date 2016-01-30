@@ -10,11 +10,29 @@
     using System.Web.Mvc;
     using System.Linq;
     using Analytics;
+    using Configuration;
+    using ContentSearch.Linq;
+    using Links;
     public class AdvanceSearchController : Controller
     {
         private readonly ISearchServiceRepository searchServiceRepository;
         private readonly ISearchSettingsRepository searchSettingsRepository;
         private readonly QueryRepository queryRepository;
+        protected readonly string QueryStringKey = "query";
+        protected readonly string FacetQueryStringKey = "f";
+
+        public AdvanceSearchController() : this(new SearchServiceRepository(), new SearchSettingsRepository(), new QueryRepository())
+        {
+        }
+
+        public AdvanceSearchController(ISearchServiceRepository serviceRepository, ISearchSettingsRepository settingsRepository, QueryRepository queryRepository)
+        {
+            this.searchServiceRepository = serviceRepository;
+            this.queryRepository = queryRepository;
+            this.searchSettingsRepository = settingsRepository;
+
+        }
+
         public ActionResult AdvanceSearchResults(string query)
         {
 
@@ -22,32 +40,65 @@
             {
                 SetPatternCard(query);
             }
+            var searchTerm = QueryStringKey;
+            var siteFacet = FacetQueryStringKey;
+            var model = new SearchResultsModel
+            {
 
-            return this.View("~/Views/HabSearch/AdvanceSearchResults.cshtml", this.GetFacetedSearchResults(new SearchQuery { Query = query }));
+                QueryStringKey = QueryStringKey,
+                AudienceFacetQueryStringKey = FacetQueryStringKey,
+                AudienceFacet = siteFacet
+            };
+            model.Keyword = searchTerm;
+            string totalCount = "0";
+            string selFacetCount = string.Empty;
+            model.AudienceFacets = GetFacets(searchTerm, out totalCount);
+            if (!string.IsNullOrEmpty(siteFacet))
+            {
+                model.AudienceFacets.TryGetValue(siteFacet, out selFacetCount);
+            }
+            model.AllResultsCount = totalCount;
+            if (!string.IsNullOrEmpty(selFacetCount))
+            {
+                model.SelectedFacetCount = selFacetCount.Split('|')[1];
+            }
+            model.PageUrl = LinkManager.GetItemUrl(Sitecore.Context.Item);
+            var objquery = this.CreateQuery(new SearchQuery { Query = query });
+            model.SearchResults = this.searchServiceRepository.Get().Search(objquery).Results;
+            return this.View("~/Views/HabSearch/AdvanceSearchResults.cshtml", model);
 
         }
-
-        private ISearchResults GetFacetedSearchResults(SearchQuery searchQuery)
+        public Dictionary<string, string> GetFacets(string searchTerm, out string totalCount)
         {
-            ISearchResults results = null;
-            if (this.HttpContext != null)
-            {
-                results = this.HttpContext.Items["SearchResults"] as ISearchResults;
-            }
+            Dictionary<string, string> audienceDict = new Dictionary<string, string>();
 
-            if (results != null)
-            {
-                return results;
-            }
+            //Get list of audience facets and totalcount
 
-            var query = this.CreateQuery(searchQuery);
-            results = this.searchServiceRepository.Get().Search(query);
-            //if (this.HttpContext != null)
+            List<FacetCategory> AudienceFacets = this.searchServiceRepository.Get().GetFacets(searchTerm, "site_section_facet", out totalCount);
+            //var AudienceNavigation = GetAudienceNavigation();
+            //if (AudienceNavigation != null)
             //{
-            //    this.HttpContext.Items.Add("SearchResults", results);
+            //    audienceDict = new Dictionary<string, string>(AudienceNavigation.ToDictionary(x => x.ID.ToShortID().ToString().ToLower(), x => string.Format("{0}|(0)", x["title"])));
             //}
 
-            return results;
+            //if (AudienceFacets != null && AudienceFacets.Count > 0)
+            //{
+            //    //facet.name returns a shortid so get the name from sitecore item
+            //    foreach (var category in AudienceFacets)
+            //    {
+            //        foreach (var facet in category.Values.OrderByDescending(i => i.AggregateCount))
+            //        {
+            //            if (audienceDict.ContainsKey(facet.Name))
+            //            {
+            //                audienceDict[facet.Name] = audienceDict[facet.Name].Replace("0", facet.AggregateCount.ToString());
+            //            }
+            //        }
+            //    }
+            //}
+            //SortedDictionary so that sorting is done based on Facet Name chronologically
+            //audienceDict.ToDictionary is required as audienceDict will still have sort ids for facets that have zero result count
+            SortedDictionary<string, string> retDict = new SortedDictionary<string, string>(audienceDict.ToDictionary(x => x.Value.Split('|')[0], x => x.Value));
+            return retDict.ToDictionary(x => x.Key, x => x.Value);
         }
         private IQuery CreateQuery(SearchQuery query)
         {

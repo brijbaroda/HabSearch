@@ -22,7 +22,50 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Models
             this.Settings = settings;
         }
 
+        public virtual List<FacetCategory> GetFacets(string keyword, string facetFieldName, out string totalCount)
+        {
+            List<FacetCategory> categories = null;
+            totalCount = "0";
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                return null;
+            }
+            var query = PredicateBuilder.True<IndexedItem>();
+            //get searchable and latest version only 
+            query = query.And<IndexedItem>(x => x.ShowInSearchResults && x.IsLatestVersion);
+            //split the keyword with spaces
+            query = query.And(BuildSplitSearchTermPredicate(keyword));
 
+            using (var context = ContentSearchManager.GetIndex((SitecoreIndexableItem)Context.Item).CreateSearchContext())
+            {
+                //facet on a field
+                IQueryable<IndexedItem> source = context.GetQueryable<IndexedItem>()
+                    .Where(query).FacetOn(f => f[facetFieldName]);
+                totalCount = source.Count().ToString();
+                categories = source.GetFacets().Categories;
+            }
+
+            return categories;
+        }
+        private Expression<Func<IndexedItem, bool>> BuildSplitSearchTermPredicate(string searchTerm)
+        {
+            var splitSearchTermPredicate = PredicateBuilder.True<IndexedItem>();
+            if (string.IsNullOrEmpty(searchTerm)) return splitSearchTermPredicate;
+
+            //search each word
+            foreach (var t in searchTerm.Split(' '))
+            {
+                var eachWordExpression = PredicateBuilder.False<IndexedItem>();
+                var tempTerm = t.Trim();
+                if (!string.IsNullOrWhiteSpace(tempTerm))
+                {
+                    //like is a fuzzy match, contains is an exact match
+                    eachWordExpression = eachWordExpression.Or(x => x.Content.Like(tempTerm) || x.HasPresentation.Like(tempTerm));
+                    splitSearchTermPredicate = splitSearchTermPredicate.And(eachWordExpression);
+                }
+            }
+            return splitSearchTermPredicate;
+        }
         public virtual ISearchResults Search(IQuery query)
         {
             using (var context = ContentSearchManager.GetIndex((SitecoreIndexableItem)Context.Item).CreateSearchContext())

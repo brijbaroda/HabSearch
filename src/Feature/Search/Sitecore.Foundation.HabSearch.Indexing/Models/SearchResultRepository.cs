@@ -3,6 +3,8 @@ using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Data.Managers;
 using Sitecore.Feature.HabSearch.Infrastructure;
+using Sitecore.Sites;
+using System;
 using System.Linq;
 namespace Sitecore.Foundation.HabSearch.Indexing.Models
 {
@@ -55,6 +57,13 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Models
             }
             var itemTemplate = TemplateManager.GetTemplate(item);
             return itemTemplate != null && (itemTemplate.ID == templateItem.ID || itemTemplate.DescendsFrom(templateItem.ID));
+        }
+        public static Item GetRootItem(this SiteContext site)
+        {
+            if (site == null)
+                throw new ArgumentNullException(nameof(site));
+
+            return site.Database.GetItem(Context.Site.RootPath);
         }
     }
 }

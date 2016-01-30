@@ -10,5 +10,13 @@ namespace Sitecore.Feature.HabSearch.Repositories
         {
             return new SearchService(this.settingsRepository.Get());
         }
+        public SearchServiceRepository() : this(new SearchSettingsRepository())
+        {
+        }
+
+        public SearchServiceRepository(ISearchSettingsRepository settingsRepository)
+        {
+            this.settingsRepository = settingsRepository;
+        }
     }
 }

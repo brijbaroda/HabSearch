@@ -1,9 +1,9 @@
-﻿using Sitecore.Foundation.HabSearch.Indexing.Models;
-
+﻿using Sitecore.Feature.HabSearch.Models;
 namespace Sitecore.Feature.HabSearch.Repositories
 {
     public interface ISearchSettingsRepository
     {
-        ISearchSettings Get();
+        SearchSettings Get();
+        SearchSettings Get(string query);
     }
 }

@@ -2,7 +2,7 @@
 using Sitecore.Diagnostics;
 using Sitecore.Feature.HabSearch.Models;
 using Sitecore.Foundation.HabSearch.Indexing.Models;
-using Sitecore.Foundation.Multisite;
+using Sitecore.Foundation.MultiSite;
 using System;
 using System.Collections.Generic;
 using System.Linq;

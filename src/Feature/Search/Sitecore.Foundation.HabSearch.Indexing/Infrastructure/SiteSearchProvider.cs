@@ -4,17 +4,19 @@ using Sitecore.ContentSearch.Linq.Utilities;
 using Sitecore.ContentSearch.SearchTypes;
 using Sitecore.Data;
 using Sitecore.Diagnostics;
+using Sitecore.Foundation.HabSearch.Indexing.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+
 namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
 {
     public interface ISiteSearchProvider
     {
         List<FacetCategory> GetFacets(string keyword, string facetFieldName, out string totalCount);
         IEnumerable<SiteSearchProvider.SiteSearchResultItem> Search(string keyword);
-        IEnumerable<SiteSearchProvider.SiteSearchResultItem> Search(string keyword, string facetshortid);        
+        IEnumerable<SiteSearchProvider.SiteSearchResultItem> Search(string keyword, string facetshortid);
     }
 
     public class SiteSearchProvider : IndexSearchBase, ISiteSearchProvider
@@ -100,7 +102,7 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
                     query = query.And<SiteSearchResultItem>(x => x.IsSearchable && x.IsLatestVersion);
                     //split the keyword with spaces
                     query = query.And(BuildSplitSearchTermPredicate(keyword));
-                    
+
                     using (IProviderSearchContext context = index.CreateSearchContext())
                     {
                         //facet on a field
@@ -158,7 +160,7 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
                 query = query.And(BuildWholeExpressionPredicate(keyword));
                 //split the keyword with spaces
                 query = query.And(BuildSplitSearchTermPredicate(keyword));
-                
+
                 if (!string.IsNullOrEmpty(facetshortid))
                 {
                     query = query.And(x => x.SiteSectionFacet == facetshortid);
@@ -180,7 +182,7 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
             }
         }
 
-        
+
         #endregion
 
         public class SiteSearchResultItem : SearchResultItem
@@ -204,6 +206,18 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
             [IndexField("site_section_facet")]
             public virtual string SiteSectionFacet { get; set; }
 
+            private Uri _itemUrl;
+            public Uri ItemUrl
+            {
+                get
+                {
+                    return this._itemUrl ?? new Uri(this.GetItem().Url(), UriKind.Relative);
+                }
+                set
+                {
+                    this._itemUrl = value;
+                }
+            }
         }
     }
 }

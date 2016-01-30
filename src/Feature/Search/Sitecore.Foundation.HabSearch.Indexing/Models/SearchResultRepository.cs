@@ -3,6 +3,7 @@ using Sitecore.Data;
 using Sitecore.Data.Items;
 using Sitecore.Data.Managers;
 using Sitecore.Feature.HabSearch.Infrastructure;
+using Sitecore.Links;
 using Sitecore.Sites;
 using System;
 using System.Linq;
@@ -64,6 +65,16 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Models
                 throw new ArgumentNullException(nameof(site));
 
             return site.Database.GetItem(Context.Site.RootPath);
+        }
+
+        public static string Url(this Item item, UrlOptions options = null)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
+            return options != null ? LinkManager.GetItemUrl(item, options) : LinkManager.GetItemUrl(item);
         }
     }
 }

@@ -9,7 +9,7 @@
         
         <div class="result">
             <h3>
-                <a href="@result.Url">@Html.Raw(result.Title)</a>
+                <a href="@result.ItemUrl">@Html.Raw(result.Title)</a>
             </h3>
             
             @if (!string.IsNullOrWhiteSpace(result.Description))
@@ -18,7 +18,7 @@
                     @Html.Raw(result.Description)
                 </div>
             }
-            <a class="btn btn-default" href="@result.Url">Read more</a>
+            <a class="btn btn-default" href="@result.ItemUrl">Read more</a>
         </div>
     }
 </div>

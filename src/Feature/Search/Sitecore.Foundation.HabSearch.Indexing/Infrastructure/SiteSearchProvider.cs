@@ -14,7 +14,7 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
     {
         List<FacetCategory> GetFacets(string keyword, string facetFieldName, out string totalCount);
         IEnumerable<SiteSearchProvider.SiteSearchResultItem> Search(string keyword);
-        IEnumerable<SiteSearchProvider.SiteSearchResultItem> Search(string keyword, string audiencefacetshortid);        
+        IEnumerable<SiteSearchProvider.SiteSearchResultItem> Search(string keyword, string facetshortid);        
     }
 
     public class SiteSearchProvider : IndexSearchBase, ISiteSearchProvider
@@ -77,7 +77,7 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
 
         #region Public Methods
         /// <summary>
-        /// GetAudienceFacets
+        /// Get Facets
         /// </summary>
         /// <param name="keyword"></param>
         /// <param out name="totalCount"></param>
@@ -138,7 +138,7 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        public IEnumerable<SiteSearchResultItem> Search(string keyword, string audiencefacetshortid)
+        public IEnumerable<SiteSearchResultItem> Search(string keyword, string facetshortid)
         {
             if (String.IsNullOrWhiteSpace(keyword)) { return Enumerable.Empty<SiteSearchResultItem>(); }
 
@@ -159,9 +159,9 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Infrastructure
                 //split the keyword with spaces
                 query = query.And(BuildSplitSearchTermPredicate(keyword));
                 
-                if (!string.IsNullOrEmpty(audiencefacetshortid))
+                if (!string.IsNullOrEmpty(facetshortid))
                 {
-                    query = query.And(x => x.SiteSectionFacet == audiencefacetshortid);
+                    query = query.And(x => x.SiteSectionFacet == facetshortid);
                 }
 
                 //execute search

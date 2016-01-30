@@ -11,6 +11,7 @@ namespace HabSearch.Controllers
         // GET: Default
         public ActionResult Index()
         {
+            // Return
             return View();
         }
     }

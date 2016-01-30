@@ -25,5 +25,7 @@ namespace Sitecore.Feature.HabSearch
                 public static readonly ID PagesToShow = new ID("{FCC7E3B4-46AB-4A51-975F-A6B259B3D214}");
             }
         }
+
+        
     }
 }

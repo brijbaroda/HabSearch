@@ -237,6 +237,7 @@
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\Project\Habitat\Page Types\Article.item">
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
+      <ChildItemSynchronization>NoChildSynchronization</ChildItemSynchronization>
     </SitecoreItem>
     <SitecoreItem Include="sitecore\templates\System.item">
       <ItemDeployment>AlwaysUpdate</ItemDeployment>

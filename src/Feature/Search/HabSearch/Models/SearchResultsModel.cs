@@ -1,4 +1,5 @@
-﻿using Sitecore.Foundation.HabSearch.Indexing.Models;
+﻿using Sitecore.Foundation.HabSearch.Indexing.Infrastructure;
+using Sitecore.Foundation.HabSearch.Indexing.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,12 @@ namespace Sitecore.Feature.HabSearch.Models
         public string AudienceFacetQueryStringKey { get; set; }
         public string PageUrl { get; set; }
         //public int PageSize { get; set; }
-        private IEnumerable<ISearchResult> _searchResults;
-        public IEnumerable<ISearchResult> SearchResults
+        private IEnumerable<SiteSearchProvider.SiteSearchResultItem> _searchResults;
+        public IEnumerable<SiteSearchProvider.SiteSearchResultItem> SearchResults
         {
             get
             {
-                return _searchResults ?? Enumerable.Empty<ISearchResult>();
+                return _searchResults ?? Enumerable.Empty<SiteSearchProvider.SiteSearchResultItem>();
 
             }
             set

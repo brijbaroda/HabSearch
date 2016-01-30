@@ -53,6 +53,8 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Infrastructure\IndexContentProviderBase.cs" />
     <Compile Include="Infrastructure\IndexContentProviderRepository.cs" />
+    <Compile Include="Infrastructure\IndexSearchBase.cs" />
+    <Compile Include="Infrastructure\SiteSearchProvider.cs" />
     <Compile Include="Infrastructure\SiteSectionFacetComputedField.cs" />
     <Compile Include="Models\IndexedItem.cs" />
     <Compile Include="Models\IQuery.cs" />

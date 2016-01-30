@@ -1,0 +1,33 @@
+﻿@model Sitecore.Feature.HabSearch.Models.SearchResultsModel
+<div id="facets">
+    @foreach (var facet in @Model.Facets)
+    {
+        var facetTitle = facet.Value.Split('|')[0];
+        var facetCount = facet.Value.Split('|')[1].Replace(")", "").Replace("(", "");
+        var facetTitleWithCount = facet.Value.Replace("|", " ");
+
+
+        string activeClass = string.Empty;
+        if (Model.Facet != null && Model.Facet.ToLower() == facetTitle.ToLower())
+        {
+            activeClass = "active";
+        }
+
+        if (facetCount == "0")
+        {
+            activeClass = "disabled";
+            <li class="@activeClass">
+                <a href="#">@facetTitleWithCount</a>
+            </li>
+        }
+        else
+        {
+            <li class="@activeClass">
+                <a href='@string.Format("{0}?{1}={2}&{3}={4}",
+                Model.PageUrl, Model.QueryStringKey, Model.Keyword, Model.FacetQueryStringKey,
+                facetTitle)'>>@facetTitleWithCount</a>
+            </li>
+
+        }
+    }
+</div>

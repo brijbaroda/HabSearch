@@ -6,16 +6,16 @@ namespace Sitecore.Foundation.HabSearch.Indexing.Models
 {
     public class IndexedItem : SearchResultItem
     {
-        [IndexField(Constants.IndexFields.HasPresentation)]
+        [IndexField("")]
         public bool HasPresentation { get; set; }
 
         [IndexField(Templates.IndexedItem.Fields.IncludeInSearchResults_FieldName)]
         public bool ShowInSearchResults { get; set; }
 
-        [IndexField(Constants.IndexFields.AllTemplates)]
+        [IndexField("")]
         public List<string> AllTemplates { get; set; }
 
-        [IndexField(Constants.IndexFields.IsLatestVersion)]
+        [IndexField("")]
         public bool IsLatestVersion { get; set; }
     }
 }

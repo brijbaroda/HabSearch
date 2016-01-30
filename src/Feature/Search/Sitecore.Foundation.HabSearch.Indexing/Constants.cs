@@ -1,12 +1,11 @@
 ﻿namespace Sitecore.Foundation.HabSearch.Indexing
 {
-    internal struct Constants
+    public static class Constants
     {
-        internal struct IndexFields
+        public static class Facets
         {
-            public const string HasPresentation = "has_presentation";
-            public const string AllTemplates = "all_templates";
-            public const string IsLatestVersion = "_latestversion";
+            public const string FacetFolderID = "{1920870F-B7A5-4ED6-8AEE-94267DB3760D}";
+           
         }
     }
 }

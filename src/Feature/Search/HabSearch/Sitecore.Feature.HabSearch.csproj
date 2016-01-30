@@ -99,6 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AdvanceSearchController.cs" />
     <Compile Include="Models\ISearchableItem.cs" />
     <Compile Include="Models\SearchQuery.cs" />
@@ -126,6 +127,9 @@
       <Project>{d3a57791-494c-4e11-a6e6-aaae049f2e92}</Project>
       <Name>Sitecore.Foundation.HabSearch.Indexing</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\HabSearch\FacetDetails.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

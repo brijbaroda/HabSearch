@@ -15,6 +15,7 @@
     using Links;
     using Foundation.HabSearch.Indexing.Infrastructure;
     using Diagnostics;
+    using Data;
     public class AdvanceSearchController : Controller
     {
         protected readonly string QueryStringKey = "query";
@@ -29,16 +30,16 @@
             var model = new SearchResultsModel
             {
                 QueryStringKey = QueryStringKey,
-                AudienceFacetQueryStringKey = FacetQueryStringKey,
-                AudienceFacet = audienceFacet
+                FacetQueryStringKey = FacetQueryStringKey,
+                Facet = audienceFacet
             };
             model.Keyword = searchTerm;
             string totalCount = "0";
             string selFacetCount = string.Empty;
-            model.AudienceFacets = GetAudienceFacets(searchTerm, out totalCount);
+            model.Facets = GetFacets(searchTerm, out totalCount);
             if (!string.IsNullOrEmpty(audienceFacet))
             {
-                model.AudienceFacets.TryGetValue(audienceFacet, out selFacetCount);
+                model.Facets.TryGetValue(audienceFacet, out selFacetCount);
             }
             model.AllResultsCount = totalCount;
             if (!string.IsNullOrEmpty(selFacetCount))
@@ -56,29 +57,22 @@
             {
 
                 QueryStringKey = QueryStringKey,
-                AudienceFacetQueryStringKey = FacetQueryStringKey,
+                FacetQueryStringKey = FacetQueryStringKey,
 
             };
 
             try
             {
-                var audienceFacet = Request.QueryString[FacetQueryStringKey];
+                var selFacet = Request.QueryString[FacetQueryStringKey];
                 model.Keyword = searchTerm;
-                model.AudienceFacet = audienceFacet;
-
-                //string selFacetShortID = string.Empty;
-                //if (!string.IsNullOrEmpty(audienceFacet))
-                //{
-                //    selFacetShortID = GetAudienceShortID(audienceFacet);
-
-                //}
-                //run search
-                var results = SearchProvider.Search(searchTerm);
+                model.Facet = selFacet;
                 
+                var results = SearchProvider.Search(searchTerm);
+
                 model.SearchResults = results;
                 model.ResultsCount = results.Count().ToString();
                 string totalCount = "0";
-                model.AudienceFacets = GetAudienceFacets(searchTerm, out totalCount);
+                model.Facets = GetFacets(searchTerm, out totalCount);
                 model.AllResultsCount = totalCount;
                 if (int.Parse(model.ResultsCount) < model.EndResultNumber)
                 {
@@ -86,9 +80,9 @@
                 }
 
                 string selFacetCount = string.Empty;
-                if (!string.IsNullOrEmpty(audienceFacet))
+                if (!string.IsNullOrEmpty(selFacet))
                 {
-                    model.AudienceFacets.TryGetValue(audienceFacet, out selFacetCount);
+                    model.Facets.TryGetValue(selFacet, out selFacetCount);
                 }
                 model.AllResultsCount = totalCount;
                 if (!string.IsNullOrEmpty(selFacetCount))
@@ -104,36 +98,50 @@
                 return View("~/Views/HabSearch/AdvanceSearchResults.cshtml");
             }
         }
-
-        public Dictionary<string, string> GetAudienceFacets(string searchTerm, out string totalCount)
+        private IEnumerable<Item> GetFacetsList()
         {
-            Dictionary<string, string> audienceDict = new Dictionary<string, string>();
+            string retShortID = string.Empty;
+            Item facetNavFolder = Sitecore.Context.Database.GetItem(Sitecore.Foundation.HabSearch.Indexing.Constants.Facets.FacetFolderID);
+            if (facetNavFolder != null)
+            {
+                List<Item> lstfacetItems = new List<Item>();
 
-            //Get list of audience facets and totalcount
-            List<FacetCategory> AudienceFacets = SearchProvider.GetFacets(searchTerm, "site_section_facet", out totalCount);
-            //var AudienceNavigation = GetAudienceNavigation();
-            //if (AudienceNavigation != null)
-            //{
-            //    audienceDict = new Dictionary<string, string>(AudienceNavigation.ToDictionary(x => x.ID.ToShortID().ToString().ToLower(), x => string.Format("{0}|(0)", x["title"])));
-            //}
+                var childItems = facetNavFolder.GetChildren();
+                if (childItems != null && childItems.Count() > 0)
+                {
+                    return childItems;
+                }
+            };
+            return null;
+        }
+        public Dictionary<string, string> GetFacets(string searchTerm, out string totalCount)
+        {
+            Dictionary<string, string> facetsDict = new Dictionary<string, string>();
+            
+            List<FacetCategory> Facets = SearchProvider.GetFacets(searchTerm, "site_section_facet", out totalCount);
+            var FacetList = GetFacetsList();
+            if (FacetList != null)
+            {
+                facetsDict = new Dictionary<string, string>(FacetList.ToDictionary(x => x.ID.ToShortID().ToString().ToLower(), x => string.Format("{0}|(0)", x["title"])));
+            }
 
-            //if (AudienceFacets != null && AudienceFacets.Count > 0)
-            //{
-            //    //facet.name returns a shortid so get the name from sitecore item
-            //    foreach (var category in AudienceFacets)
-            //    {
-            //        foreach (var facet in category.Values.OrderByDescending(i => i.AggregateCount))
-            //        {
-            //            if (audienceDict.ContainsKey(facet.Name))
-            //            {
-            //                audienceDict[facet.Name] = audienceDict[facet.Name].Replace("0", facet.AggregateCount.ToString());
-            //            }
-            //        }
-            //    }
-            //}
+            if (Facets != null && Facets.Count > 0)
+            {
+                //facet.name returns a shortid so get the name from sitecore item
+                foreach (var category in Facets)
+                {
+                    foreach (var facet in category.Values.OrderByDescending(i => i.AggregateCount))
+                    {
+                        if (facetsDict.ContainsKey(facet.Name))
+                        {
+                            facetsDict[facet.Name] = facetsDict[facet.Name].Replace("0", facet.AggregateCount.ToString());
+                        }
+                    }
+                }
+            }
             //SortedDictionary so that sorting is done based on Facet Name chronologically
-            //audienceDict.ToDictionary is required as audienceDict will still have sort ids for facets that have zero result count
-            SortedDictionary<string, string> retDict = new SortedDictionary<string, string>(audienceDict.ToDictionary(x => x.Value.Split('|')[0], x => x.Value));
+            
+            SortedDictionary<string, string> retDict = new SortedDictionary<string, string>(facetsDict.ToDictionary(x => x.Value.Split('|')[0], x => x.Value));
             return retDict.ToDictionary(x => x.Key, x => x.Value);
         }
 

@@ -12,8 +12,8 @@ namespace Sitecore.Feature.HabSearch.Models
     {
         public string Keyword { get; set; }
         public string QueryStringKey { get; set; }
-        public string AudienceFacet { get; set; }
-        public string AudienceFacetQueryStringKey { get; set; }
+        public string Facet { get; set; }
+        public string FacetQueryStringKey { get; set; }
         public string PageUrl { get; set; }
         //public int PageSize { get; set; }
         private IEnumerable<SiteSearchProvider.SiteSearchResultItem> _searchResults;
@@ -29,7 +29,7 @@ namespace Sitecore.Feature.HabSearch.Models
                 _searchResults = value;
             }
         }
-        public Dictionary<string, string> AudienceFacets { get; set; }
+        public Dictionary<string, string> Facets { get; set; }
         public string AllResultsCount { get; set; }
         public string ResultsCount { get; set; }
         //this might work?

@@ -2,9 +2,9 @@
 version: 1
 id: {F77A9410-3E65-4E9B-9CD9-7A9CBC4FA81D}
 database: master
-path: /sitecore/templates/Foundation/Indexing/_FacetType/Faceting/Site Section Facet
+path: /sitecore/templates/Foundation/Indexing/_FacetType/Faceting/SiteSectionFacet
 parent: {108DF39A-95FA-408F-AFCC-D2EBC5833CDA}
-name: Site Section Facet
+name: SiteSectionFacet
 master: {00000000-0000-0000-0000-000000000000}
 template: {455A3E98-A627-4B40-8035-E683A0331AC7}
 templatekey: Template field
@@ -33,8 +33,22 @@ content-length: 3
 ----version----
 language: en
 version: 1
-revision: 828e8544-a782-4b58-a84e-223d61cb3c2f
+revision: 1cbac17f-e986-4b5f-be7f-11e007a1966e
 
+----field----
+field: {19A69332-A23E-4E70-8D16-B2640CB24CC8}
+name: Title
+key: title
+content-length: 18
+
+Site Section Facet
+----field----
+field: {B5E02AD9-D56F-4C41-A065-A133DB87BDEB}
+name: __Display name
+key: __display name
+content-length: 18
+
+Site Section Facet
 ----field----
 field: {25BED78C-4957-4165-998A-CA1B52F67497}
 name: __Created
@@ -48,14 +62,14 @@ name: __Revision
 key: __revision
 content-length: 36
 
-828e8544-a782-4b58-a84e-223d61cb3c2f
+1cbac17f-e986-4b5f-be7f-11e007a1966e
 ----field----
 field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
 name: __Updated
 key: __updated
 content-length: 16
 
-20160130T103943Z
+20160130T112709Z
 ----field----
 field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
 name: __Updated by

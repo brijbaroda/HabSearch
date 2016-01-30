@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Foundation", "Foundation", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sitecore.Foundation.HabSearch.Indexing", "Sitecore.Foundation.HabSearch.Indexing\Sitecore.Foundation.HabSearch.Indexing.csproj", "{D3A57791-494C-4E11-A6E6-AAAE049F2E92}"
 EndProject
+Project("{CAA73BB0-EF22-4D79-A57E-DF67B3BA9C80}") = "Sitecore.TDS.Content", "..\..\TDS\Sitecore.TDS.Content\Sitecore.TDS.Content.scproj", "{1E9B7FC0-2385-49FA-8758-4358A29AD66A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,12 @@ Global
 		{D3A57791-494C-4E11-A6E6-AAAE049F2E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3A57791-494C-4E11-A6E6-AAAE049F2E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3A57791-494C-4E11-A6E6-AAAE049F2E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E9B7FC0-2385-49FA-8758-4358A29AD66A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E9B7FC0-2385-49FA-8758-4358A29AD66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E9B7FC0-2385-49FA-8758-4358A29AD66A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1E9B7FC0-2385-49FA-8758-4358A29AD66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E9B7FC0-2385-49FA-8758-4358A29AD66A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E9B7FC0-2385-49FA-8758-4358A29AD66A}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

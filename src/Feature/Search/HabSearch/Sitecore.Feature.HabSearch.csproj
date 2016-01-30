@@ -41,8 +41,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Sitecore.Kernel">
-      <HintPath>bin\Debug\Sitecore.Kernel.dll</HintPath>
+    <Reference Include="Sitecore.Kernel, Version=8.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\sc_references\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
@@ -100,13 +101,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\HabSearch\AdvanceSearchResults.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Sitecore.Foundation.HabSearch.Indexing\Sitecore.Foundation.HabSearch.Indexing.csproj">
       <Project>{d3a57791-494c-4e11-a6e6-aaae049f2e92}</Project>
       <Name>Sitecore.Foundation.HabSearch.Indexing</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\HabSearch\AdvanceSearchResults.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

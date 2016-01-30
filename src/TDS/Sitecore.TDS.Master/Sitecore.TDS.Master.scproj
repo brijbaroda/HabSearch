@@ -6,12 +6,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>764460ef-882e-4326-b051-77cf5319b4ba</ProjectGuid>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <SourceWebPhysicalPath>
-    </SourceWebPhysicalPath>
-    <SourceWebProject>
-    </SourceWebProject>
-    <SourceWebVirtualPath>
-    </SourceWebVirtualPath>
+    <SourceWebPhysicalPath>..\..\Feature\Search\HabSearch</SourceWebPhysicalPath>
+    <SourceWebProject>{90bd8ba0-1e12-4e66-a776-d3630600dd6e}|HabSearch\Sitecore.Feature.HabSearch.csproj</SourceWebProject>
+    <SourceWebVirtualPath>/Sitecore.Feature.HabSearch.csproj</SourceWebVirtualPath>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <EnableUpdateable>true</EnableUpdateable>
     <UseMerge>true</UseMerge>
@@ -61,6 +58,12 @@
     <SitecoreItem Include="sitecore\templates\Feature\HabSearch.item">
       <ItemDeployment>AlwaysUpdate</ItemDeployment>
     </SitecoreItem>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Feature\Search\HabSearch\Sitecore.Feature.HabSearch.csproj">
+      <Project>{90bd8ba0-1e12-4e66-a776-d3630600dd6e}</Project>
+      <Name>Sitecore.Feature.HabSearch</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\HedgehogDevelopment\SitecoreProject\v9.0\HedgehogDevelopment.SitecoreProject.targets" />
 </Project>

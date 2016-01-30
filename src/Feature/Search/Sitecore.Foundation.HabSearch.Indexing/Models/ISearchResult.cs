@@ -1,8 +1,9 @@
-﻿using Sitecore.Data.Items;
-using System;
-
+﻿
 namespace Sitecore.Foundation.HabSearch.Indexing.Models
 {
+    using System;
+    using Sitecore.Data.Items;
+
     public interface ISearchResult
     {
         Item Item { get; }
